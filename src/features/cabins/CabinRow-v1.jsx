@@ -47,7 +47,6 @@ import { useCreateCabin } from "./useCreateCabin";
 import ConfirmDelete from '../../ui/ConfirmDelete'
 import Modal from "../../ui/Modal";
 import Table from "../../ui/Table";
-import Menus from "../../ui/Menus";
 
 const CabinRow = ({ cabin }) => {
   const { isDeleting, deleteCabins } = useDeleteCabin()
@@ -73,7 +72,6 @@ const CabinRow = ({ cabin }) => {
         <Price>{formatCurrency(regularPrice)}</Price>
         {discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
         <div>
-          <button disabled={isCreating} onClick={handleDuplicate}>{<HiSquare2Stack />}</button>
           <Modal>
             <Modal.Open opens='edit'>
               <button >{<HiPencil />}</button>
@@ -91,16 +89,6 @@ const CabinRow = ({ cabin }) => {
               <ConfirmDelete resourceName='cabins' disabled={isDeleting} onConfirm={() => deleteCabins(cabinId)}/>
             </Modal.Window>
           </Modal>
-
-<Menus.Menu>
-  <Menus.Toggle id={cabinId}/>
-
-  <Menus.List id={cabinId}>
-    <Menus.Button icon={<HiSquare2Stack/>} onClick={handleDuplicate}>Duplicate</Menus.Button>
-    <Menus.Button icon={<HiPencil/>}>Edit</Menus.Button>
-    <Menus.Button icon={<HiTrash/>  }>Delete</Menus.Button>
-  </Menus.List>
-</Menus.Menu>
 
 
         </div>
